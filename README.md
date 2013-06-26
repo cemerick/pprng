@@ -1,4 +1,4 @@
-# pprng
+# pprng [![Travis CI status](https://secure.travis-ci.org/cemerick/pprng.png)](http://travis-ci.org/#!/cemerick/pprng/builds)
 
 portable pseudo-random number generators for Clojure/ClojureScript
 
