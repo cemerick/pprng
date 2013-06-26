@@ -40,6 +40,7 @@
                                           "cljsbuild" "once," "cljsbuild" "test"]}
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
                                                      cljx.repl-middleware/wrap-cljx]}
+                   #_#_
                    :injections [(require '[cljs.repl.browser :refer (exec-env)]
                                          '[cemerick.piggieback :refer (cljs-repl)])
                                 (defn browser-repl []
