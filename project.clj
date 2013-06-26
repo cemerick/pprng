@@ -1,4 +1,4 @@
-(defproject com.cemerick/pprng "0.0.1-SNAPSHOT"
+(defproject com.cemerick/pprng "0.0.1"
   :jar-exclusions [#"\.cljx|\.swp|\.swo|\.DS_Store"]
   :source-paths ["src/cljx"]
   :resource-paths ["src/resources"]
