@@ -31,11 +31,18 @@
                              rng/float [1.4E-45 3.4028235E38]
                              rng/double [4.9E-324 1.7976931348623157E308]
                              rng/long [-9007199254740992 9007199254740992]}]
-      (dotimes [_ 10000]
+      (dotimes [_ 100000]
         ; hardly conclusive, but maybe a reasonable sanity check of the ranges
         ; we're trying to enforce....however, *not* an actual test of the
         ; stretching we're doing to get to those ranges!
         (is (<= low (fn rng) high))))))
+
+(deftest limited-ints
+  (let [rng (rng/rng 42)]
+    (dotimes [_ 100000]
+      (let [limit (Math/abs (rng/int rng))
+            int (rng/int rng limit)]
+        (is (and (<= 0 int) (< int limit)))))))
 
 #+clj
 (deftest ju-random-compat

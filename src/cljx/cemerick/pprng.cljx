@@ -7,7 +7,7 @@
   (-seed [this])
   (-next-double [this])
   (-next-float [this])
-  (-next-int [this])
+  (-next-int [this] [this limit])
   (-next-long [this])
   (-next-boolean [this]))
 
@@ -18,6 +18,7 @@
   (-next-double [this] (.nextDouble rng))
   (-next-float [this] (.nextFloat rng))
   (-next-int [this] (.nextInt rng))
+  (-next-int [this limit] (.nextInt rng limit))
   (-next-long [this] (.nextLong rng))
   (-next-boolean [this] (.nextBoolean rng)))
 
@@ -30,7 +31,9 @@
                   "Use `"*ns* "/rng` to always obtain a RNG that retains its original seed value."))))
   (-next-double [this] (.nextDouble this))
   (-next-float [this] (.nextFloat this))
-  (-next-int [this] (.nextInt this))
+  (-next-int
+    ([this] (.nextInt this))
+    ([this limit] (.nextInt this limit)))
   (-next-long [this] (.nextLong this))
   (-next-boolean [this] (.nextBoolean this)))
 
@@ -47,6 +50,7 @@
   (-next-float [this] (between random-double 1.4E-45 3.4028235E38))
   ; imprecise, but should be reliably so
   (-next-int [this] (between random-double -2147483648 2147483647))
+  (-next-int [this limit] (between random-double 0 limit))
   (-next-long [this] (between random-double -9007199254740992 9007199254740992))
   (-next-boolean [this] (zero? (Math/floor (* 2 (random-double))))))
 
@@ -82,9 +86,9 @@
   (-next-float rng))
 
 (defn int
-  "Returns the next int value from the given RNG."
-  [rng]
-  (-next-int rng))
+  "Returns the next int value from the given RNG.  If supplied a [limit] argument, the range of the returned int will be [0,limit)."
+  ([rng] (-next-int rng))
+  ([rng limit] (-next-int rng limit)))
 
 (defn long
   "Returns the next long value from the given RNG."
