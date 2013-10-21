@@ -49,9 +49,9 @@
   (-next-double [this] (random-double))
   (-next-float [this] (between random-double 1.4E-45 3.4028235E38))
   ; imprecise, but should be reliably so
-  (-next-int [this] (between random-double -2147483648 2147483647))
-  (-next-int [this limit] (between random-double 0 limit))
-  (-next-long [this] (between random-double -9007199254740992 9007199254740992))
+  (-next-int [this] (long (between random-double -2147483648 2147483647)))
+  (-next-int [this limit] (long (between random-double 0 limit)))
+  (-next-long [this] (long (between random-double -9007199254740992 9007199254740992)))
   (-next-boolean [this] (zero? (Math/floor (* 2 (random-double))))))
 
 (defn rng
