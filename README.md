@@ -19,9 +19,10 @@ the ClojureScript compiler options of each `:build` in your
 ```
 
 This will force the ClojureScript compiler to search your full classpath for
-Google Closure-compatible JavaScript libraries (pprng includes [seedrandom](http://davidbau.com/encode/seedrandom.js), a
-seedable JavaScript PRNG implementation, tweaked for use with Google Closure
-with advanced compilation on).
+Google Closure-compatible JavaScript libraries (pprng includes
+[seedrandom](http://davidbau.com/encode/seedrandom.js), a seedable JavaScript
+PRNG implementation, tweaked for use with Google Closure with advanced
+compilation on).
 
 ## Usage
 
@@ -38,6 +39,8 @@ user=> (def rng (rng/rng))
 ;; obtain values from it...
 user=> (rng/int rng)
 -1170105035
+user=> (rng/int rng 1000)
+267
 user=> (rng/boolean rng)
 false
 user=> (rng/double rng)
