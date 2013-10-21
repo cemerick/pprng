@@ -4,7 +4,7 @@
   :resource-paths ["src/resources"]
   :test-paths ["target/test-classes"]
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-1835"]]
+                 [org.clojure/clojurescript "0.0-1934"]]
 
   :cljx {:builds [{:source-paths ["src/cljx"]
                    :output-path "target/classes"
@@ -30,11 +30,11 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.0.5-SNAPSHOT"]
+  :profiles {:dev {:dependencies [[com.cemerick/piggieback "0.1.0"]
                                   [com.keminglabs/cljx "0.3.0"]]
                    :plugins [[com.cemerick/clojurescript.test "0.1.0"]
                              [com.keminglabs/cljx "0.3.0"]
-                             [lein-cljsbuild "0.3.3"]]
+                             [lein-cljsbuild "0.3.4"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]}
                    :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
