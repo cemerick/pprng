@@ -60,7 +60,7 @@
   ; TODO apply the same transformation to current time as j.u.Random does to
   ; obtain "a value very likely to be distinct from any other invocation" of
   ; this fn
-  ([] (rng (.getTime #+clj (java.util.Date.) #+cljs (js.Date.))))
+  ([] (rng (.getTime #+clj (java.util.Date.) #+cljs (js/Date.))))
   ([seed]
    #+cljs (Math/seedrandom seed)
    (SeededRandom. seed
