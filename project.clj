@@ -30,13 +30,10 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :profiles {:dev {:dependencies [[com.keminglabs/cljx "0.3.0"]]
-                   :plugins [[com.cemerick/clojurescript.test "0.1.0"]
-                             [com.keminglabs/cljx "0.3.0"]
+  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.1.0"]
+                             [com.keminglabs/cljx "0.3.1"]
                              [com.cemerick/austin "0.1.1"]
                              [lein-cljsbuild "0.3.4"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
-                                          "cljsbuild" "test"]}
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl
-                                                     cljx.repl-middleware/wrap-cljx]}}})
+                                          "cljsbuild" "test"]}}})
 
