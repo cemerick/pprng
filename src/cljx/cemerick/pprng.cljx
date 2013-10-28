@@ -1,5 +1,7 @@
 (ns cemerick.pprng
-  #+cljs (:require math.seedrandom)
+  #+cljs (:require math.seedrandom
+                   [cljs.core :as lang])
+  #+clj (:require [clojure.core :as lang])
   #+clj (:import java.util.Random)
   (:refer-clojure :exclude (double float int long boolean)))
 
@@ -42,9 +44,6 @@
   [random low high]
   (+ low (* (random) (- high low))))
 
-;; only needed until http://dev.clojure.org/jira/browse/CLJS-632 is fixed
-(def ^:private corelong #+clj clojure.core/long #+cljs cljs.core/long)
-
 #+cljs
 (defrecord SeededRandom [seed random-double]
   IRandom
@@ -52,9 +51,9 @@
   (-next-double [this] (random-double))
   (-next-float [this] (between random-double 1.4E-45 3.4028235E38))
   ; imprecise, but should be reliably so
-  (-next-int [this] (corelong (between random-double -2147483648 2147483647)))
-  (-next-int [this limit] (corelong (between random-double 0 limit)))
-  (-next-long [this] (corelong (between random-double -9007199254740992 9007199254740992)))
+  (-next-int [this] (lang/long (between random-double -2147483648 2147483647)))
+  (-next-int [this limit] (lang/long (between random-double 0 limit)))
+  (-next-long [this] (lang/long (between random-double -9007199254740992 9007199254740992)))
   (-next-boolean [this] (zero? (Math/floor (* 2 (random-double))))))
 
 (defn rng

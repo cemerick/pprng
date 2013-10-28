@@ -4,7 +4,7 @@
   :resource-paths ["src/resources"]
   :test-paths ["target/test-classes"]
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [org.clojure/clojurescript "0.0-1934"]]
+                 [org.clojure/clojurescript "0.0-1978"]]
 
   :cljx {:builds [{:source-paths ["src/cljx"]
                    :output-path "target/classes"
