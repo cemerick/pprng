@@ -35,5 +35,6 @@
                              [com.cemerick/austin "0.1.2-SNAPSHOT"]
                              [lein-cljsbuild "0.3.4"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
-                                          "cljsbuild" "test"]}}})
+                                          "cljsbuild" "test"]
+                             "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}})
 
