@@ -5,6 +5,10 @@
   #+clj (:import java.util.Random)
   (:refer-clojure :exclude (double float int long boolean)))
 
+#+clj (set! *warn-on-reflection* true)
+
+; this protocol warns about reflection under Clojure < 1.6.0
+; http://dev.clojure.org/jira/browse/CLJ-1202
 (defprotocol IRandom
   (-seed [this])
   (-next-double [this])
