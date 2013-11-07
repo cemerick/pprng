@@ -36,7 +36,7 @@
 
   :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.2.0"]
                              [com.keminglabs/cljx "0.3.1"]
-                             [com.cemerick/austin "0.1.2-SNAPSHOT"]
+                             [com.cemerick/austin "0.1.2"]
                              [lein-cljsbuild "1.0.0-alpha1"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]
