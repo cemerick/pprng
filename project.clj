@@ -1,4 +1,4 @@
-(defproject com.cemerick/pprng "0.0.2"
+(defproject com.cemerick/pprng "0.0.3-SNAPSHOT"
   :description "portable pseudo-random number generators for Clojure/ClojureScript"
   :url "http://github.com/cemerick/pprng"
   :license {:name "Eclipse Public License"
