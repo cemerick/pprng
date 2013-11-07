@@ -1,10 +1,14 @@
-(defproject com.cemerick/pprng "0.0.2-SNAPSHOT"
+(defproject com.cemerick/pprng "0.0.2"
+  :description "portable pseudo-random number generators for Clojure/ClojureScript"
+  :url "http://github.com/cemerick/pprng"
+  :license {:name "Eclipse Public License"
+            :url "http://www.eclipse.org/legal/epl-v10.html"}
   :jar-exclusions [#"\.cljx|\.swp|\.swo|\.DS_Store"]
   :source-paths ["src/cljx"]
   :resource-paths ["src/resources"]
   :test-paths ["target/test-classes"]
   :dependencies [[org.clojure/clojure "1.6.0-alpha1"]
-                 [org.clojure/clojurescript "0.0-2005"]]
+                 [org.clojure/clojurescript "0.0-2014"]]
 
   :cljx {:builds [{:source-paths ["src/cljx"]
                    :output-path "target/classes"
@@ -30,10 +34,10 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.1.0"]
+  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.2.0"]
                              [com.keminglabs/cljx "0.3.1"]
                              [com.cemerick/austin "0.1.2-SNAPSHOT"]
-                             [lein-cljsbuild "0.3.4"]]
+                             [lein-cljsbuild "1.0.0-alpha1"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]
                              "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}})
