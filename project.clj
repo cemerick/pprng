@@ -26,7 +26,7 @@
                    :output-path "target/test-classes"
                    :rules :cljs}]}
 
-  :cljsbuild {:test-commands {"phantom" ["phantomjs" :runner "target/testable.js"]}
+  :cljsbuild {:test-commands {"node" ["node" :node-runner "target/testable.js"]}
               :builds [{:source-paths ["target/classes" "target/test-classes"
                                        "src/resources"]
                         :compiler {:output-to "target/testable.js"
@@ -34,7 +34,7 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.2.0"]
+  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.2.2"]
                              [com.keminglabs/cljx "0.3.1"]
                              [com.cemerick/austin "0.1.3"]
                              [lein-cljsbuild "1.0.0-alpha2"]]
