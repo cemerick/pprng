@@ -40,5 +40,7 @@
                              [lein-cljsbuild "1.0.0-alpha2"]]
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]
-                             "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}})
+                             "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}
+             :TC [:dev {:dependencies [[org.clojure/core.typed "0.2.48"]]
+                        :plugins [[lein-typed "0.3.4"]]}]})
 
