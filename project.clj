@@ -41,6 +41,6 @@
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]
                              "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}
-             :TC [:dev {:dependencies [[org.clojure/core.typed "0.2.48"]]
+             :TC [:dev {:dependencies [[org.clojure/core.typed "0.2.50"]]
                         :plugins [[lein-typed "0.3.4"]]}]})
 
