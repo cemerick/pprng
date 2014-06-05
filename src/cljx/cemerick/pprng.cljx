@@ -1,22 +1,12 @@
 (ns cemerick.pprng
-  #+cljs (:require math.seedrandom
-                   [cljs.core :as lang])
-  #+clj (:require [clojure.core :as lang])
+  (:require #+cljs math.seedrandom
+            [#+cljs cljs.core #+clj clojure.core :as lang]
+            #+clj [clojure.core.typed :as tc])
+  #+cljs (:require-macros [cljs.core.typed :as tc])
   #+clj (:import java.util.Random)
   (:refer-clojure :exclude (double float int long boolean)))
 
-(require '[clojure.core.typed :as tc
-           ])
-
 #+clj (set! *warn-on-reflection* true)
-
-#_(tc/ann-protocol IRandom
-  -seed [IRandom -> tc/AnyInteger]
-  -next-double [IRandom -> Double]
-  -next-float [IRandom -> Float]
-  -next-int (Fn [IRandom -> Integer] [IRandom Integer -> Integer])
-  -next-long [IRandom -> Long]
-  -next-boolean [IRandom -> Boolean])
 
 ; this protocol warns about reflection under Clojure < 1.6.0
 ; http://dev.clojure.org/jira/browse/CLJ-1202
@@ -26,23 +16,24 @@
   (-next-float [this] :- Float)
   (-next-int
     [this] :- Integer
-    [this ^long limit :- Integer] :- Integer)
+    [this limit :- Integer] :- Integer)
   (-next-long [this] :- Long)
   (-next-boolean [this] :- Boolean))
 
-(tc/ann-record SeededRandom [seed :- tc/AnyInteger
-                             rng :- java.util.Random])
-
 #+clj
-(defrecord SeededRandom [seed ^Random rng]
-  IRandom
-  (-seed [this] seed)
-  (-next-double [this] (.nextDouble rng))
-  (-next-float [this] (.nextFloat rng))
-  (-next-int [this] (.nextInt rng))
-  (-next-int [this limit] (.nextInt rng limit))
-  (-next-long [this] (.nextLong rng))
-  (-next-boolean [this] (.nextBoolean rng)))
+(do
+  (tc/ann-record SeededRandom [seed :- tc/AnyInteger
+                               rng :- java.util.Random])
+
+  (defrecord SeededRandom [seed ^Random rng]
+    IRandom
+    (-seed [this] seed)
+    (-next-double [this] (.nextDouble rng))
+    (-next-float [this] (.nextFloat rng))
+    (-next-int [this] (.nextInt rng))
+    (-next-int [this limit] (.nextInt rng limit))
+    (-next-long [this] (.nextLong rng))
+    (-next-boolean [this] (.nextBoolean rng))))
 
 #+clj
 (extend-protocol IRandom
@@ -65,21 +56,23 @@
   (+ low (* (random) (- high low))))
 
 #+cljs
-(defrecord SeededRandom [seed random-double]
-  IRandom
-  (-seed [this] seed)
-  (-next-double [this] (random-double))
-  (-next-float [this] (between random-double 1.4E-45 3.4028235E38))
-  ; imprecise, but should be reliably so
-  (-next-int [this] (lang/long (between random-double -2147483648 2147483647)))
-  (-next-int [this limit] (lang/long (between random-double 0 limit)))
-  (-next-long [this] (lang/long (between random-double -9007199254740992 9007199254740992)))
-  (-next-boolean [this] (zero? (Math/floor (* 2 (random-double))))))
+(do
+  (tc/ann-record SeededRandom [seed :- number
+                               random-double :- function])
+  (defrecord SeededRandom [seed random-double]
+   IRandom
+   (-seed [this] seed)
+   (-next-double [this] (random-double))
+   (-next-float [this] (between random-double 1.4E-45 3.4028235E38))
+   ; imprecise, but should be reliably so
+   (-next-int [this] (lang/long (between random-double -2147483648 2147483647)))
+   (-next-int [this limit] (lang/long (between random-double 0 limit)))
+   (-next-long [this] (lang/long (between random-double -9007199254740992 9007199254740992)))
+   (-next-boolean [this] (zero? (Math/floor (* 2 (random-double)))))))
 
 
 (tc/ann rng (Fn [-> IRandom]
-              ; not true for JS
-              [long -> IRandom]))
+              [#+clj long #+cljs number -> IRandom]))
 (defn rng
   "Returns a new random number generator seeded with [seed] that satisfies the
   `IRandom` protocol."
