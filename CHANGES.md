@@ -1,5 +1,10 @@
 # changelog
 
+## 0.0.3
+
+* pprng no longer requires the use of `:libs` when included in a ClojureScript
+  compile
+
 ## 0.0.2
 
 * `cemerick.pprng/int` and `cemerick.pprng/long` now properly emit only

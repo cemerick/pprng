@@ -7,25 +7,8 @@ portable pseudo-random number generators for Clojure/ClojureScript
 Add to your [Leiningen](http://leiningen.org) `project.clj`:
 
 ```clojure
-[com.cemerick/pprng "0.0.2"]
+[com.cemerick/pprng "0.0.3"]
 ```
-
-If you are going to use pprng from ClojureScript, you also need to add this to
-the ClojureScript compiler options of each `:build` in your
-[lein-cljsbuild](https://github.com/emezeske/lein-cljsbuild) configuration:
-
-```clojure
-:libs [""]
-```
-
-This will force the ClojureScript compiler to search your full classpath for
-Google Closure-compatible JavaScript libraries (pprng includes
-[seedrandom](http://davidbau.com/encode/seedrandom.js), a seedable JavaScript
-PRNG implementation, tweaked for use with Google Closure with advanced
-compilation on).
-
-**pprng requires the version of ClojureScript it depends upon in its
-`project.clj`**
 
 ## Usage
 
@@ -61,7 +44,7 @@ like to contribute patches.
 
 ## License
 
-Copyright ©2013 [Chas Emerick](http://cemerick.com) and other contributors.
+Copyright ©2013-\* [Chas Emerick](http://cemerick.com) and other contributors.
 
 Distributed under the Eclipse Public License, the same as Clojure.
 Please see the `epl-v10.html` file at the top level of this repo.

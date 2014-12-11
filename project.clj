@@ -1,4 +1,4 @@
-(defproject com.cemerick/pprng "0.0.3-SNAPSHOT"
+(defproject com.cemerick/pprng "0.0.3"
   :description "portable pseudo-random number generators for Clojure/ClojureScript"
   :url "http://github.com/cemerick/pprng"
   :license {:name "Eclipse Public License"
@@ -8,7 +8,7 @@
   :resource-paths ["src/resources"]
   :test-paths ["target/test-classes"]
   :dependencies [[org.clojure/clojure "1.6.0"]
-                 [org.clojure/clojurescript "0.0-2227"]]
+                 [org.clojure/clojurescript "0.0-2411"]]
 
   :cljx {:builds [{:source-paths ["src/cljx"]
                    :output-path "target/classes"
@@ -33,10 +33,12 @@
                                    :optimizations :advanced
                                    :pretty-print true}}]}
 
-  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.3.1"]
-                             [com.keminglabs/cljx "0.3.3-SNAPSHOT"]
+  :profiles {:dev {:plugins [[com.cemerick/clojurescript.test "0.3.2"]
+                             [com.keminglabs/cljx "0.5.0"]
                              [com.cemerick/austin "0.1.5-SNAPSHOT"]
                              [lein-cljsbuild "1.0.3"]]
+                   :prep-tasks [["cljx" "once"] "javac" "compile"]
+                   :auto-clean false
                    :aliases {"cleantest" ["do" "clean," "cljx" "once," "test,"
                                           "cljsbuild" "test"]
                              "deploy" ["do" "clean," "cljx" "once," "deploy" "clojars"]}}})
