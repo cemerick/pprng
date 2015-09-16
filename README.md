@@ -1,5 +1,11 @@
 # pprng [![Travis CI status](https://api.travis-ci.org/cemerick/pprng.png?branch=master)](http://travis-ci.org/#!/cemerick/pprng/builds)
 
+<h2 style="font-size:300%;font-weight:bold">DEPRECATED</h2>
+
+I don't think anyone is actually using this, but just in case: if you need a common Clojure/ClojureScript API for random number generation, you should use the splittable PRNG implemented for [test.check](https://github.com/clojure/test.check) (`clojure.test.check.random`). I implemented pprng solely to enable [double-check](https://github.com/cemerick/double-check), and its deprecation leaves this project without purpose.
+
+--------
+
 portable pseudo-random number generators for Clojure/ClojureScript
 
 ## "Installation"
